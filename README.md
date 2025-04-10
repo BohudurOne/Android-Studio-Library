@@ -28,14 +28,12 @@ Replace `Version` with the latest release version.
 </dependency>
 ```
 
-#### Example:
+#### Latest Version:
 
 ```xml
-<dependency>
-    <groupId>com.github.BohudurOne</groupId>
-    <artifactId>Android-Studio-Library</artifactId>
-    <version>1.0</version>
-</dependency>
+dependencies {
+    implementation 'com.github.BohudurOne:Android-Studio-Library:1.0'
+}
 ```
 
 ## 📚 Documentation
