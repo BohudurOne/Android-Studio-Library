@@ -3,7 +3,7 @@
 
 This is Bohudur Payment Android Studio Library that helps to integrate Bohudur in your Android Studio project.
 
-## 📦 Installation
+## Installation
 
 ### Step 1: Add the JitPack repository
 
@@ -37,7 +37,7 @@ dependencies {
 }
 ```
 
-## 📚 Documentation
+## Documentation
 
 You can find the full documentation here: [https://documentation.bohudur.one/android-studio/](https://documentation.bohudur.one/android-studio/)
 
