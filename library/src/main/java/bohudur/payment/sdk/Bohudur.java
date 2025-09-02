@@ -20,7 +20,7 @@ public class Bohudur {
     
     private static final String REQUEST_URL = "https://request.bohudur.one/create-v2/";
     private static final String EXECUTE_URL = "https://request.bohudur.one/execute-v2/";
-    private static final String VERIFY_URL = "https://request.bohudur.one/query-v2/";
+    private static final String QUERY_URL = "https://request.bohudur.one/query-v2/";
     
     private final Map<String, Object> requestData = new HashMap<>();
     private final Map<String, String> webhookData = new HashMap<>();
@@ -252,7 +252,7 @@ public class Bohudur {
         requestQueue.add(jsonObjectRequest);
     }
         
-    public void query(String paymentKey, Consumer<SuccessResponse> onSuccess, Consumer<FailureResponse> onCancel) {
+    public void query(String paymentKey, Consumer<SuccessResponse> onSuccess, Consumer<FailureResponse> onFailed) {
         BohudurPaymentDialog paymentDialog = new BohudurPaymentDialog(context);
         paymentDialog.show();
         paymentDialog.hideWebView();
@@ -264,22 +264,17 @@ public class Bohudur {
         } catch (JSONException err) {}
         
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-            Request.Method.POST, VERIFY_URL, jsonObject,
+            Request.Method.POST, QUERY_URL, jsonObject,
             new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
                     if (response != null) {
-                        try {
-                            if (!response.has("responseCode") && response.has("status") && response.getString("status").equals("EXECUTED")) {
-                                paymentDialog.dismiss();
-                                onSuccess.accept(new SuccessResponse(response));
-                            } else if(response.has("responseCode")){
-                                paymentDialog.dismiss();
-                                onCancel.accept(new FailureResponse(response));
-                            }
-                        } catch (JSONException exception) {
+                        if (!response.has("responseCode") && response.has("status")) {
                             paymentDialog.dismiss();
-                            onCancel.accept(new FailureResponse(response));
+                            onSuccess.accept(new SuccessResponse(response));
+                        } else if(response.has("responseCode")){
+                            paymentDialog.dismiss();
+                            onFailed.accept(new FailureResponse(response));
                         }
                     }
                 }
@@ -290,7 +285,7 @@ public class Bohudur {
                     try {
                         String jsonString = "{\"responseCode\":2004, \"message\": \"internal error!\", \"status\": \"failed\"}";
                         JSONObject jsonObject = new JSONObject(jsonString);
-                        onCancel.accept(new FailureResponse(jsonObject));
+                        onFailed.accept(new FailureResponse(jsonObject));
                         paymentDialog.dismiss();
                     } catch (JSONException err) {}
                 }
