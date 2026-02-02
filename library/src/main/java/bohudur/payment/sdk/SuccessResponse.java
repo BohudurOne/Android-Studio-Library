@@ -49,35 +49,19 @@ public class SuccessResponse {
         }
     }
 
-    public String getTransactionFee() {
+    public String getCurrency() {
         try {
-            return responseData.getString("transaction_fee");
+            return responseData.getString("currency");
         } catch (Exception e) {
-            return "Unknown Transaction Fee";
+            return "Unknown Currency";
         }
     }
 
-    public String getDefaultCurrency() {
-        try {
-            return responseData.getString("default_currency");
-        } catch (Exception e) {
-            return "Unknown Default Currency";
-        }
-    }
-    
     public double getCurrencyValue() {
         try {
             return responseData.getDouble("currency_value");
         } catch (Exception e) {
             return 0.0;
-        }
-    }
-    
-    public String getPaymentCurrency() {
-        try {
-            return responseData.getString("payment_currency");
-        } catch (Exception e) {
-            return "Unknown Payment Currency";
         }
     }
 
@@ -89,7 +73,7 @@ public class SuccessResponse {
         }
     }
 
-    public String getCancelUrl() {
+    public String getCancelledUrl() {
         try {
             return responseData.getString("cancel_url");
         } catch (Exception e) {
@@ -97,27 +81,51 @@ public class SuccessResponse {
         }
     }
     
-    public String getPaymentTime() {
+    public String getTime() {
     	try {
-            return responseData.getString("payment_time");
+            return responseData.getString("time");
         } catch (Exception e) {
-            return "Unknown Payment Time";
-        }
-    }
-    
-    public String getCreatedTime() {
-    	try {
-            return responseData.getString("payment_time");
-        } catch (Exception e) {
-            return "Unknown Created Time";
+            return "Unknown Time";
         }
     }
 
-    public JSONObject getPaymentInfo() {
+    public String getPaymentMethod() {
         try {
-            return responseData.getJSONObject("payment_info");
+            return responseData.getString("payment_method");
         } catch (Exception e) {
-            return new JSONObject();
+            return "Unknown MFS";
+        }
+    }
+    
+    public String getTransactionMethod() {
+        try {
+            return responseData.getString("transaction_method");
+        } catch (Exception e) {
+            return "Unknown Method";
+        }
+    }
+
+    public String getSenderNumber() {
+        try {
+            return responseData.getString("sender_number");
+        } catch (Exception e) {
+            return "Unknown Number";
+        }
+    }
+
+    public String getTransactionID() {
+        try {
+            return responseData.getString("transaction_id");
+        } catch (Exception e) {
+            return "Unknown Transaction ID";
+        }
+    }
+
+    public String getPaymentDateAndTime() {
+        try {
+            return responseData.getString("payment_date");
+        } catch (Exception e) {
+            return "Unknown Payment Time";
         }
     }
 

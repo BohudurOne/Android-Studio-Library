@@ -18,9 +18,9 @@ public class Bohudur {
     private final Context context;
     private String apiKey;
     
-    private static final String REQUEST_URL = "https://request.bohudur.one/create/v2/";
-    private static final String EXECUTE_URL = "https://request.bohudur.one/execute/v2/";
-    private static final String QUERY_URL = "https://request.bohudur.one/query/v2/";
+    private static final String REQUEST_URL = "https://request.bohudur.one/create-v2/";
+    private static final String EXECUTE_URL = "https://request.bohudur.one/execute-v2/";
+    private static final String QUERY_URL = "https://request.bohudur.one/query-v2/";
     
     private final Map<String, Object> requestData = new HashMap<>();
     private final Map<String, String> webhookData = new HashMap<>();
@@ -92,7 +92,16 @@ public class Bohudur {
         return this;
     }
 
-    
+    public Bohudur setCurrency(String currency) {
+        requestData.put("currency", currency);
+        return this;
+    }
+        
+    public Bohudur setCurrencyValue(double currency_value) {
+        requestData.put("currency_value", currency_value);
+        return this;
+    }
+        
     public Bohudur setReturnType(String type) {
         requestData.put("return_type", type);
         return this;
@@ -122,14 +131,9 @@ public class Bohudur {
 
     // Execute Request using Internal Request Executor
     public void request(Consumer<SuccessResponse> onSuccess, Consumer<FailureResponse> onCancel) {
-        if(!webhookData.isEmpty()){
-            requestData.put("webhook", webhookData);
-        }
-            
-        if(!metadata.isEmpty()){
-            requestData.put("metadata", metadata);
-        }
         
+        requestData.put("webhooks", webhookData);
+        requestData.put("metadata", metadata);
         requestData.put("redirect_url","default");
         requestData.put("cancel_url","default");
         
