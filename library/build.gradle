@@ -44,7 +44,7 @@ publishing {
         release(MavenPublication) {
             groupId = 'bohudur'
             artifactId = 'payment'
-            version = '1.2'
+            version = '1.1.1'
 
             afterEvaluate {
                 from components.release
