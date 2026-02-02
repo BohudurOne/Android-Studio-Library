@@ -21,7 +21,7 @@ import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-public class BohudurPaymentDialog {
+class BohudurPaymentDialog {
     
     private Dialog dialog;
     private RedirectResponse redirectResponse;
