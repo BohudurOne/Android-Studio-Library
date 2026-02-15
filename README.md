@@ -39,5 +39,5 @@ dependencies {
 
 ## Documentation
 
-You can find the full documentation here: [https://documentation.bohudur.one/android-studio/](https://documentation.bohudur.one/android-studio/)
+You can find the full documentation here: [https://docs.bohudur.one/android-studio/](https://docs.bohudur.one/android-studio/)
 
