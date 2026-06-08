@@ -33,7 +33,7 @@ Replace `Version` with the latest release version.
 
 ```xml
 dependencies {
-    implementation 'com.github.BohudurOne:Android-Studio-Library:1.2.1'
+    implementation 'com.github.BohudurOne:Android-Studio-Library:1.2.2'
 }
 ```
 
