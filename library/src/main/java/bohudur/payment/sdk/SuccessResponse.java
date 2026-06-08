@@ -113,6 +113,14 @@ public class SuccessResponse {
         }
     }
 
+    public String getReceipt() {
+    	try {
+            return responseData.getString("receipt");
+        } catch (Exception e) {
+            return "Unknown Receipt URL";
+        }
+    }
+
     public JSONObject getPaymentInfo() {
         try {
             return responseData.getJSONObject("payment_info");
